@@ -72,6 +72,24 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    -- Get the current buffer content
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    -- Remove trailing empty lines
+    while #lines > 1 and lines[#lines] == '' do
+      table.remove(lines)
+    end
+    -- Ensure there is exactly one newline at the end
+    if lines[#lines] ~= '' then
+      table.insert(lines, '')
+    end
+    -- Set the modified lines back to the buffer
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  end,
+})
+
 -- [[ PLUGINS ]]
 
 -- Install lazy.nvim plugin manager
