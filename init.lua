@@ -3,6 +3,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Add more colors to the terminal
+vim.opt.termguicolors = true
+
 vim.g.have_nerd_font = false
 
 -- [[ OPTIONS ]]
@@ -27,7 +30,6 @@ vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
 
 vim.opt.updatetime = 250
-
 vim.opt.timeoutlen = 300
 
 vim.opt.splitright = true
