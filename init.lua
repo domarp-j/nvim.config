@@ -12,7 +12,9 @@ vim.g.have_nerd_font = true
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+------------------------------------------------------------
 -- [[ OPTIONS ]]
+------------------------------------------------------------
 
 vim.opt.number = true
 -- vim.opt.relativenumber = true
@@ -48,7 +50,9 @@ vim.opt.cursorline = true
 
 vim.opt.scrolloff = 10
 
+------------------------------------------------------------
 -- [[ KEYMAPS ]]
+------------------------------------------------------------
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -78,13 +82,12 @@ vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = tr
 vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = true })
 
 -- Neotree shortcuts
-vim.keymap.set('n', 'ntf', ':Neotree action=focus source=filesystem<CR>', { silent = true })
-vim.keymap.set('n', 'ntb', ':Neotree action=focus source=buffers<CR>', { silent = true })
-vim.keymap.set('n', 'ntg', ':Neotree action=focus source=git_status<CR>', { silent = true })
-vim.keymap.set('n', 'ntx', ':Neotree action=close<CR>', { silent = true })
+vim.keymap.set('n', 'tt', ':Neotree action=show source=filesystem toggle<CR>', { desc = 'Toggle Neotree', noremap = true, silent = true })
 
+------------------------------------------------------------
 -- [[ AUTOCOMMANDS ]]
 -- aka event listeners
+------------------------------------------------------------
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -138,7 +141,9 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
+------------------------------------------------------------
 -- [[ PLUGINS ]]
+------------------------------------------------------------
 
 -- Install lazy.nvim plugin manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -567,13 +572,6 @@ require('lazy').setup({
   },
   {
     'numToStr/Comment.nvim', -- Useful comment-related utilties
-  },
-  {
-    'f-person/git-blame.nvim', -- View git blame info
-    event = 'VeryLazy',
-  },
-  {
-    'sindrets/diffview.nvim', -- View diffs in git
   },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
