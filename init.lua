@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 -- Add more colors to the terminal
 vim.opt.termguicolors = true
 
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = false
 
 -- Disable netrw (using Neotree instead)
 vim.g.loaded_netrw = 1
@@ -212,7 +212,6 @@ require('lazy').setup({
           F12 = '<F12>',
         },
       },
-
       spec = {
         { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
         { '<leader>d', group = '[D]ocument' },
