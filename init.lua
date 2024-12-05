@@ -274,7 +274,7 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {
-      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
+      { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependents
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -404,7 +404,11 @@ require('lazy').setup({
         }
       end,
       formatters_by_ft = {
+        javascript = { 'eslint_d', 'prettierd' },
+        javascriptreact = { 'eslint_d', 'prettierd' },
         lua = { 'stylua' },
+        typescript = { 'eslint_d', 'prettierd' },
+        typescriptreact = { 'eslint_d', 'prettierd' },
       },
     },
   },
@@ -478,7 +482,6 @@ require('lazy').setup({
     end,
   },
   {
-    --
     'folke/tokyonight.nvim', -- A fun little color scheme
     priority = 1000,
     init = function()
@@ -537,11 +540,13 @@ require('lazy').setup({
   {
     'pmizio/typescript-tools.nvim', -- Theoretically a better alternative to typescript-language-server
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = {},
   },
   {
     'numToStr/Comment.nvim', -- Useful comment-related utilties
-    opts = {},
+  },
+  {
+    'f-person/git-blame.nvim', -- View git blame info
+    event = 'VeryLazy',
   },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
