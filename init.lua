@@ -516,6 +516,11 @@ require('lazy').setup({
   { -- GitHub Copilot - Run :Copilot setup to get started
     'github/copilot.vim',
   },
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = {},
+  },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
