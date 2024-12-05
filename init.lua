@@ -73,7 +73,7 @@ vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save to file', silent = true })
 vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = true })
 vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = true })
 
--- Neotree
+-- Neotree shortcuts
 vim.keymap.set('n', 'ntf', ':Neotree action=focus source=filesystem<CR>', { silent = true })
 vim.keymap.set('n', 'ntb', ':Neotree action=focus source=buffers<CR>', { silent = true })
 vim.keymap.set('n', 'ntg', ':Neotree action=focus source=git_status<CR>', { silent = true })
@@ -138,13 +138,11 @@ require('lazy').setup({
   -- ################################################################################
   -- START PLUGINS
   -- ################################################################################
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-  -- Color theme based on Kanagawa art
-  'rebelot/kanagawa.nvim',
 
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
+  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  'rebelot/kanagawa.nvim', -- Color theme based on Kanagawa art
+  {
+    'lewis6991/gitsigns.nvim', -- Adds git related signs to the gutter, as well as utilities for managing changes
     opts = {
       signs = {
         add = { text = '+' },
@@ -155,8 +153,8 @@ require('lazy').setup({
       },
     },
   },
-  { -- Useful plugin to show pending keybinds
-    'folke/which-key.nvim',
+  {
+    'folke/which-key.nvim', -- Show pending keybinds
     event = 'VimEnter',
     opts = {
       icons = {
@@ -204,8 +202,8 @@ require('lazy').setup({
       },
     },
   },
-  { -- Fuzzy Finder (files, lsp, etc)
-    'nvim-telescope/telescope.nvim',
+  {
+    'nvim-telescope/telescope.nvim', -- Fuzzy Finder (files, lsp, etc)
     event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
@@ -263,8 +261,8 @@ require('lazy').setup({
       end, { desc = '[S]earch [N]eovim files' })
     end,
   },
-  { -- LSP - Configure Lua LSP for Neovim config, runtime, plugins
-    'folke/lazydev.nvim',
+  {
+    'folke/lazydev.nvim', -- LSP - Configure Lua LSP for Neovim config, runtime, plugins
     ft = 'lua',
     opts = {
       library = {
@@ -376,8 +374,8 @@ require('lazy').setup({
       }
     end,
   },
-  { -- Autoformat
-    'stevearc/conform.nvim',
+  {
+    'stevearc/conform.nvim', -- Autoformatting
     event = { 'BufWritePre' },
     cmd = { 'ConformInfo' },
     keys = {
@@ -410,8 +408,8 @@ require('lazy').setup({
       },
     },
   },
-  { -- Autocompletion
-    'hrsh7th/nvim-cmp',
+  {
+    'hrsh7th/nvim-cmp', -- Autocompletion
     event = 'InsertEnter',
     dependencies = {
       {
@@ -479,19 +477,23 @@ require('lazy').setup({
       }
     end,
   },
-  { -- Color scheme
-    -- :Telescope colorscheme - Show installed color schemes
-    'folke/tokyonight.nvim',
+  {
+    --
+    'folke/tokyonight.nvim', -- A fun little color scheme
     priority = 1000,
     init = function()
-      vim.cmd.colorscheme 'kanagawa' -- # COLORSCHEME
+      vim.cmd.colorscheme 'kanagawa' -- # SET COLORSCHEME HERE. Also, run ":Telescope colorscheme" to see installed color schemes.
       vim.cmd.hi 'Comment gui=none'
     end,
   },
-  -- Highlight todo, notes, etc in comments
-  { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
-  { -- Collection of various small independent plugins/modules
-    'echasnovski/mini.nvim',
+  {
+    'folke/todo-comments.nvim', -- Highlight todo, notes, etc in comments
+    event = 'VimEnter',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { signs = false },
+  },
+  {
+    'echasnovski/mini.nvim', -- Collection of various small independent plugins/modules
     config = function()
       require('mini.ai').setup { n_lines = 500 }
       require('mini.surround').setup()
@@ -505,8 +507,8 @@ require('lazy').setup({
       end
     end,
   },
-  { -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
+  {
+    'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
     build = ':TSUpdate',
     main = 'nvim-treesitter.configs',
     opts = {
@@ -519,8 +521,8 @@ require('lazy').setup({
       indent = { enable = true, disable = { 'ruby' } },
     },
   },
-  { -- See file tree
-    'nvim-neo-tree/neo-tree.nvim',
+  {
+    'nvim-neo-tree/neo-tree.nvim', -- View and customize file trees
     branch = 'v3.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -530,20 +532,22 @@ require('lazy').setup({
     },
   },
   {
-    'github/copilot.vim', -- :Copilot setup
+    'github/copilot.vim', -- GitHub Copilot. Run :Copilot setup to get started.
   },
   {
-    'pmizio/typescript-tools.nvim',
+    'pmizio/typescript-tools.nvim', -- Theoretically a better alternative to typescript-language-server
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
-  { 'numToStr/Comment.nvim', opts = {} },
+  {
+    'numToStr/Comment.nvim', -- Useful comment-related utilties
+    opts = {},
+  },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
+  require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
   -- { import = 'custom.plugins' },
   --
   -- ################################################################################
