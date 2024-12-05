@@ -513,6 +513,9 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
   },
+  { -- GitHub Copilot - Run :Copilot setup to get started
+    'github/copilot.vim',
+  },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
