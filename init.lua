@@ -8,6 +8,10 @@ vim.opt.termguicolors = true
 
 vim.g.have_nerd_font = true
 
+-- Disable netrw (using Neotree instead)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- [[ OPTIONS ]]
 
 vim.opt.number = true
@@ -118,6 +122,19 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     vim.opt_local.linebreak = true
     vim.opt_local.wrap = true
     vim.opt_local.breakindent = true
+  end,
+})
+
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function(data)
+    -- By default, Neovim opens netrw when you open a directory.
+    -- This custom autocommand will open Neotree instead.
+    local directory = vim.fn.isdirectory(data.file) == 1
+    if not directory then
+      return
+    end
+    vim.cmd.cd(data.file)
+    require('neo-tree.command').execute { toggle = true, dir = data.file }
   end,
 })
 
@@ -532,6 +549,13 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
       'MunifTanjim/nui.nvim',
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+      config = function()
+        require('neo-tree').setup {
+          filesystem = {
+            hijack_netrw_behavior = 'open_default',
+          },
+        }
+      end,
     },
   },
   {
@@ -547,6 +571,9 @@ require('lazy').setup({
   {
     'f-person/git-blame.nvim', -- View git blame info
     event = 'VeryLazy',
+  },
+  {
+    'sindrets/diffview.nvim', -- View diffs in git
   },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
