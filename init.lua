@@ -6,13 +6,13 @@ vim.g.maplocalleader = ' '
 -- Add more colors to the terminal
 vim.opt.termguicolors = true
 
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ OPTIONS ]]
 
 vim.opt.number = true
 -- vim.opt.relativenumber = true
---
+
 vim.opt.mouse = 'a'
 vim.opt.showmode = false
 
@@ -52,16 +52,32 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
--- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+-- Disable arrow keys in normal mode
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
+-- Move between windows
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+
+-- Make it easier to exit insert mode
+vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode with "jk"' })
+vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode with "kj"' })
+
+-- Bind Ctrl-S to save. It's too ingrained in my muscle memory.
+vim.keymap.set('n', '<C-s>', ':w<CR>', { desc = 'Save to file', silent = true })
+vim.keymap.set('i', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = true })
+vim.keymap.set('v', '<C-s>', '<Esc>:w<CR>', { desc = 'Save to file', silent = true })
+
+-- Neotree
+vim.keymap.set('n', 'ntf', ':Neotree action=focus source=filesystem<CR>', { silent = true })
+vim.keymap.set('n', 'ntb', ':Neotree action=focus source=buffers<CR>', { silent = true })
+vim.keymap.set('n', 'ntg', ':Neotree action=focus source=git_status<CR>', { silent = true })
+vim.keymap.set('n', 'ntx', ':Neotree action=close<CR>', { silent = true })
 
 -- [[ AUTOCOMMANDS ]]
 -- aka event listeners
@@ -513,14 +529,15 @@ require('lazy').setup({
       -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
   },
-  { -- GitHub Copilot - Run :Copilot setup to get started
-    'github/copilot.vim',
+  {
+    'github/copilot.vim', -- :Copilot setup
   },
   {
     'pmizio/typescript-tools.nvim',
     dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
     opts = {},
   },
+  { 'numToStr/Comment.nvim', opts = {} },
   -- require 'kickstart.plugins.debug',
   require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
