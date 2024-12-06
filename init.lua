@@ -3,6 +3,7 @@
 -- config-keymaps
 -- config-autocommands
 -- config-plugins
+--
 
 --------------------------------------------------------------------------------
 -- [[ GLOBAL CONFIGS ]] config-global

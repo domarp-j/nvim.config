@@ -5,12 +5,10 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-tree/nvim-web-devicons',
     'MunifTanjim/nui.nvim',
-    config = function()
-      require('neo-tree').setup {
-        filesystem = {
-          hijack_netrw_behavior = 'open_default',
-        },
-      }
-    end,
   },
+  config = function()
+    require('neo-tree').setup {
+      close_if_last_window = true,
+    }
+  end,
 }
