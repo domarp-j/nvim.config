@@ -31,7 +31,12 @@ return {
         }
       end,
       formatters_by_ft = {
+        css = { 'eslint_d', 'prettierd' },
+        javascript = { 'eslint_d', 'prettierd' },
+        javascriptreact = { 'eslint_d', 'prettierd' },
         lua = { 'stylua' },
+        typescript = { 'eslint_d', 'prettierd' },
+        typescriptreact = { 'eslint_d', 'prettierd' },
       },
     },
   },
