@@ -21,6 +21,10 @@ vim.g.maplocalleader = ' '
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+-- Enable if you have a Nerd Font installed.
+-- NOTE: A Nerd Font is required for icons to display correctly.
+vim.g.have_nerd_font = true
+
 --------------------------------------------------------------------------------
 -- [[ OPTIONS ]] config-options
 -- :help vim.opt
@@ -216,7 +220,7 @@ require('lazy').setup({
   { import = 'plugins' },
 }, {
   ui = {
-    icons = {
+    icons = vim.g.have_nerd_font and {} or {
       cmd = '⌘',
       config = '🛠',
       event = '📅',

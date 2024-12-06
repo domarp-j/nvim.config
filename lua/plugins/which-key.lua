@@ -5,7 +5,8 @@ return {
   event = 'VimEnter',
   opts = {
     icons = {
-      keys = {
+      mappings = vim.g.have_nerd_font,
+      keys = vim.g.have_nerd_font and {} or {
         Up = '<Up> ',
         Down = '<Down> ',
         Left = '<Left> ',
