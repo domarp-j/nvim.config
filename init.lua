@@ -1,9 +1,9 @@
 -- config-global
 -- config-options
 -- config-keymaps
+-- config-commands
 -- config-autocommands
 -- config-plugins
---
 
 --------------------------------------------------------------------------------
 -- [[ GLOBAL CONFIGS ]] config-global
@@ -121,6 +121,13 @@ vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
 -- Show the filesystem tree via Neotree.
 -- NOTE: Make sure the neo-tree plugin is installed!
 vim.keymap.set('n', '|', ':Neotree reveal<CR>', { silent = true, desc = 'Toggle Neotree focus' })
+
+--------------------------------------------------------------------------------
+-- [[ COMMANDS ]] config-commands
+-- :help lua-guide-commands
+--------------------------------------------------------------------------------
+
+-- ...none yet...
 
 --------------------------------------------------------------------------------
 -- [[ AUTOCOMMANDS ]] config-autocommands
