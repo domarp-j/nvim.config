@@ -10,6 +10,10 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- Disable netrw on load so we can use Neotree instead.
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 --------------------------------------------------------------------------------
 -- [[ #OPTIONS ]]
 -- :help vim.opt
@@ -104,6 +108,10 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Show the filesystem tree via Neotree.
+-- NOTE: Make sure neo-tree is installed!
+vim.keymap.set('n', 'tt', ':Neotree action=show source=filesystem toggle<CR>', { desc = 'Toggle Neotree', noremap = true, silent = true })
+
 --------------------------------------------------------------------------------
 -- [[ #AUTOCOMMANDS ]]
 -- :help lua-guide-autocommands
@@ -119,15 +127,25 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Load Neotree instead of netrw when opening a directory.
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function(data)
+    local directory = vim.fn.isdirectory(data.file) == 1
+    if not directory then
+      return
+    end
+    vim.cmd.cd(data.file)
+    require('neo-tree.command').execute { toggle = true, dir = data.file }
+  end,
+})
+
 --------------------------------------------------------------------------------
 -- [[ #PLUGINS ]]
 -- This config uses lazy.nvim to manage plugins.
+-- :Lazy - See current status of plugins
 -- :help lazy.nvim.txt
--- Run `:Lazy` to see the current status of plugins.
+-- :help lazy.nvim-🔌-plugin-spec`
 -- See https://github.com/folke/lazy.nvim for more.
---
--- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
--- Or use telescope! `<space>sh` `lazy.nvim-plugin`
 --------------------------------------------------------------------------------
 
 --- NOTE: Use `opts = {}` to force a plugin to be loaded.
@@ -143,17 +161,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- #COLORSCHEME
-  -- :Telescope colorscheme - See full list of color schemes
-  {
-    'rebelot/kanagawa.nvim',
-    priority = 1000, -- Make sure to load this before all the other start plugins.
-    init = function()
-      vim.cmd.colorscheme 'kanagawa-dragon'
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-
   -- vim-sleuth
   -- Automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file,
   -- or, in the case the current file is new, blank, or otherwise insufficient, by looking at other files
@@ -642,20 +649,8 @@ require('lazy').setup({
     },
   },
 
-  -- Here are some extra plugins provided by kickstart.lua.
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
-  -- require 'kickstart.plugins.autopairs',
-  -- require 'kickstart.plugins.neo-tree',
-  -- require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
-
-  --
-  -- NOTE: You can add your own plugins in lua/custom/plugins. This is also a great way to keep the config clean and modular.
-  --
-  -- Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'plugins' },
 }, {
   ui = {
     icons = {
