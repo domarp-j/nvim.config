@@ -119,12 +119,7 @@ vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
 
 -- Show the filesystem tree via Neotree.
 -- NOTE: Make sure the neo-tree plugin is installed!
-vim.keymap.set('n', 'ntt', function()
-  vim.cmd.Neotree 'focus'
-end, { noremap = true, silent = true, desc = 'Toggle Neotree focus' })
-vim.keymap.set('n', 'ntx', function()
-  vim.cmd.Neotree 'close'
-end, { noremap = true, silent = true, desc = 'Toggle Neotree focus' })
+vim.keymap.set('n', '|', ':Neotree reveal<CR>', { silent = true, desc = 'Toggle Neotree focus' })
 
 --------------------------------------------------------------------------------
 -- [[ AUTOCOMMANDS ]] config-autocommands
