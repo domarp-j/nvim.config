@@ -108,6 +108,9 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
+vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
+
 -- Show the filesystem tree via Neotree.
 -- NOTE: Make sure neo-tree is installed!
 vim.keymap.set('n', 'tt', ':Neotree action=show source=filesystem toggle<CR>', { desc = 'Toggle Neotree', noremap = true, silent = true })
@@ -139,6 +142,33 @@ vim.api.nvim_create_autocmd('VimEnter', {
   end,
 })
 
+-- Add exactly one newline at end of files.
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    while #lines > 1 and lines[#lines] == '' do
+      table.remove(lines)
+    end
+    if lines[#lines] ~= '' then
+      table.insert(lines, '')
+    end
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+  end,
+})
+
+-- Add spellcheck and readability to READMEs.
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.md',
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = 'en_us'
+    vim.opt_local.linebreak = true
+    vim.opt_local.wrap = true
+    vim.opt_local.breakindent = true
+  end,
+})
+
 --------------------------------------------------------------------------------
 -- [[ #PLUGINS ]]
 -- This config uses lazy.nvim to manage plugins.
@@ -166,73 +196,6 @@ require('lazy').setup({
   -- or, in the case the current file is new, blank, or otherwise insufficient, by looking at other files
   -- of the same type in the current and parent directories.
   'tpope/vim-sleuth',
-
-  -- gitsigns.nvim
-  -- Adds useful git decorations, for diffs and so on
-  -- NOTE: Equivalent to require('gitsigns').setup({...})
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-
-  -- which-key.nvim
-  -- Helps you remember Neovim keymaps
-  -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
-  {
-    'folke/which-key.nvim',
-    event = 'VimEnter',
-    opts = {
-      icons = {
-        keys = {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
-        },
-      },
-      spec = {
-        { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
-        { '<leader>d', group = '[D]ocument' },
-        { '<leader>r', group = '[R]ename' },
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
-    },
-  },
 
   -- telescope.nvim
   --:help telescope
