@@ -10,7 +10,7 @@
 -- :help vim.opt
 -- :help option-list
 --------------------------------------------------------------------------------
----
+
 -- Set <space> as the leader key.
 -- :help mapleader
 -- NOTE: This must happen before plugins are loaded.
