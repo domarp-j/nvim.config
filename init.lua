@@ -23,6 +23,7 @@ vim.g.loaded_netrwPlugin = 1
 
 -- Enable if you have a Nerd Font installed.
 -- NOTE: A Nerd Font is required for icons to display correctly.
+-- The installation for a Nerd Font depends on your OS and terminal.
 vim.g.have_nerd_font = true
 
 --------------------------------------------------------------------------------
