@@ -1,9 +1,15 @@
--- #OPTIONS
--- #KEYMAPS
--- #AUTOCOMMANDS
--- #PLUGINS
--- #COLORSCHEME
+-- config-global
+-- config-options
+-- config-keymaps
+-- config-autocommands
+-- config-plugins
 
+--------------------------------------------------------------------------------
+-- [[ GLOBAL CONFIGS ]] config-global
+-- :help vim.opt
+-- :help option-list
+--------------------------------------------------------------------------------
+---
 -- Set <space> as the leader key.
 -- :help mapleader
 -- NOTE: This must happen before plugins are loaded.
@@ -15,7 +21,7 @@ vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 --------------------------------------------------------------------------------
--- [[ #OPTIONS ]]
+-- [[ OPTIONS ]] config-options
 -- :help vim.opt
 -- :help option-list
 --------------------------------------------------------------------------------
@@ -76,7 +82,7 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 --------------------------------------------------------------------------------
--- [[ #KEYMAPS ]]
+-- [[ KEYMAPS ]] config-keymaps
 -- :help vim.keymap.set()
 --------------------------------------------------------------------------------
 
@@ -116,7 +122,7 @@ vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('n', 'tt', ':Neotree action=show source=filesystem toggle<CR>', { desc = 'Toggle Neotree', noremap = true, silent = true })
 
 --------------------------------------------------------------------------------
--- [[ #AUTOCOMMANDS ]]
+-- [[ AUTOCOMMANDS ]] config-autocommands
 -- :help lua-guide-autocommands
 --------------------------------------------------------------------------------
 
@@ -170,15 +176,15 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 })
 
 --------------------------------------------------------------------------------
--- [[ #PLUGINS ]]
+-- [[ PLUGINS ]] config-plugins
 -- This config uses lazy.nvim to manage plugins.
+-- All installed plugins can be found in the ./lua/plugins/ dir.
 -- :Lazy - See current status of plugins
 -- :help lazy.nvim.txt
 -- :help lazy.nvim-🔌-plugin-spec`
 -- See https://github.com/folke/lazy.nvim for more.
+-- NOTE: Use `opts = {}` to force a plugin to be loaded.
 --------------------------------------------------------------------------------
-
---- NOTE: Use `opts = {}` to force a plugin to be loaded.
 
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -191,165 +197,6 @@ end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  -- vim-sleuth
-  -- Automatically adjusts 'shiftwidth' and 'expandtab' heuristically based on the current file,
-  -- or, in the case the current file is new, blank, or otherwise insufficient, by looking at other files
-  -- of the same type in the current and parent directories.
-  'tpope/vim-sleuth',
-
-  -- conform.nvim
-  -- Autoformatter
-  {
-    'stevearc/conform.nvim',
-    event = { 'BufWritePre' },
-    cmd = { 'ConformInfo' },
-    keys = {
-      {
-        '<leader>f',
-        function()
-          require('conform').format { async = true, lsp_format = 'fallback' }
-        end,
-        mode = '',
-        desc = '[F]ormat buffer',
-      },
-    },
-    opts = {
-      notify_on_error = false,
-      format_on_save = function(bufnr)
-        local disable_filetypes = { c = true, cpp = true }
-        local lsp_format_opt
-        if disable_filetypes[vim.bo[bufnr].filetype] then
-          lsp_format_opt = 'never'
-        else
-          lsp_format_opt = 'fallback'
-        end
-        return {
-          timeout_ms = 500,
-          lsp_format = lsp_format_opt,
-        }
-      end,
-      formatters_by_ft = {
-        lua = { 'stylua' },
-      },
-    },
-  },
-
-  -- nvim-cmp
-  -- Autocompletion
-  {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
-    dependencies = {
-      {
-        'L3MON4D3/LuaSnip',
-        build = (function()
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
-          return 'make install_jsregexp'
-        end)(),
-        dependencies = {},
-      },
-      'saadparwaiz1/cmp_luasnip',
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-    },
-    config = function()
-      local cmp = require 'cmp'
-      local luasnip = require 'luasnip'
-      luasnip.config.setup {}
-
-      cmp.setup {
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        completion = { completeopt = 'menu,menuone,noinsert' },
-
-        -- TODO: Read :help ins-completion
-        mapping = cmp.mapping.preset.insert {
-          ['<C-n>'] = cmp.mapping.select_next_item(),
-          ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-          ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-
-          ['<C-y>'] = cmp.mapping.confirm { select = true },
-
-          ['<C-Space>'] = cmp.mapping.complete {},
-
-          ['<C-l>'] = cmp.mapping(function()
-            if luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            end
-          end, { 'i', 's' }),
-          ['<C-h>'] = cmp.mapping(function()
-            if luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            end
-          end, { 'i', 's' }),
-        },
-        sources = {
-          {
-            name = 'lazydev',
-            group_index = 0,
-          },
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
-        },
-      }
-    end,
-  },
-
-  -- todo-comments.nvim
-  -- Highlight comments with prefixes like TODO, NOTE, WARN, HACK, and more!
-  {
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-    },
-    opts = { signs = false },
-  },
-
-  -- mini.nvim
-  -- A collection of small but extremely useful plugins and modules
-  -- See https://github.com/echasnovski/mini.nvim
-  {
-    'echasnovski/mini.nvim',
-    config = function()
-      require('mini.ai').setup { n_lines = 500 }
-      require('mini.surround').setup()
-      local statusline = require 'mini.statusline'
-      ---@diagnostic disable-next-line: duplicate-set-field
-      statusline.section_location = function()
-        return '%2l:%-2v'
-      end
-    end,
-  },
-
-  -- nvim-treesitter
-  -- Unlike the LSP, treesitter does code highlighting, editing, and navigation effectively
-  -- at the file level as opposed to the project level.
-  -- See :help lsp-vs-treesitter for more details.
-  {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
-    main = 'nvim-treesitter.configs', -- Sets main module to use for opts
-    opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
-      auto_install = true,
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = { 'ruby' },
-      },
-      indent = { enable = true, disable = { 'ruby' } },
-    },
-  },
-
-  --
   { import = 'plugins' },
 }, {
   ui = {
