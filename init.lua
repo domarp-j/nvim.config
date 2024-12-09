@@ -123,10 +123,6 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 vim.keymap.set('i', 'jk', '<Esc>', { desc = 'Exit insert mode' })
 vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Exit insert mode' })
 
--- Show the filesystem tree via Neotree.
--- NOTE: Make sure the neo-tree plugin is installed!
-vim.keymap.set('n', '|', ':Neotree reveal<CR>', { silent = true, desc = 'Toggle Neotree focus' })
-
 -- Easily navigate errors within a file.
 vim.keymap.set('n', ']e', function()
   vim.diagnostic.goto_next { severity = vim.diagnostic.severity.ERROR }
@@ -134,6 +130,8 @@ end)
 vim.keymap.set('n', '[e', function()
   vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
 end)
+
+vim.keymap.set('n', '<C-\\>', '<cmd>Neotree toggle<CR>', { desc = 'Toggle Neotree' })
 
 --------------------------------------------------------------------------------
 -- [[ COMMANDS ]] config-commands
