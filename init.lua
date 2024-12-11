@@ -18,6 +18,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Disable netrw on load so we can use Neotree instead.
+-- We're essentially tricking Vim into thinking netrw is already loaded.
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
