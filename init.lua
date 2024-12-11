@@ -26,6 +26,23 @@ vim.g.loaded_netrwPlugin = 1
 -- The installation for a Nerd Font depends on your OS and terminal.
 vim.g.have_nerd_font = true
 
+-- Extra clipboard configuration is required for WSL.
+local in_wsl = os.getenv 'WSL_DISTRO_NAME' ~= nil
+if in_wsl then
+  vim.g.clipboard = {
+    name = 'WslClipboard',
+    copy = {
+      ['+'] = 'clip.exe',
+      ['*'] = 'clip.exe',
+    },
+    paste = {
+      ['+'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+      ['*'] = 'powershell.exe -c [Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    cache_enabled = 0,
+  }
+end
+
 --------------------------------------------------------------------------------
 -- [[ OPTIONS ]] config-options
 -- :help vim.opt
