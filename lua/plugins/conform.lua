@@ -1,12 +1,8 @@
--- stevearc/conform.nvim
---
--- This is the plugin used for autoformatting code using ESLint,
--- Prettier, Stylua, and so on.
---
--- NOTE: This plugin requires installation of the desired formatters,
--- such as eslint_d or prettierd.
--- Update `ensure_installed` in nvim-lspconfig.lua so that Mason installs
--- them automatically.
+-- Autocompletion
+
+-- NOTE: This plugin requires installation of any desired formatters,
+-- such as eslint_d or prettierd. Update `ensure_installed` in
+-- nvim-lspconfig.lua so that Mason installs them automatically.
 return {
   {
     'stevearc/conform.nvim',

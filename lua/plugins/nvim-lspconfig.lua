@@ -1,5 +1,5 @@
--- nvim-lspconfig
--- This is the main LSP configuration plugin.
+-- This is the main LSP configuration plugin
+
 return {
   'neovim/nvim-lspconfig',
   dependencies = {

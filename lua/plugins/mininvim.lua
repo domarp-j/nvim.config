@@ -1,6 +1,6 @@
--- mini.nvim
 -- A collection of small but extremely useful plugins and modules
 -- See https://github.com/echasnovski/mini.nvim
+
 return {
   'echasnovski/mini.nvim',
   config = function()

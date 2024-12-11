@@ -1,3 +1,5 @@
+-- Quickly navigate through files you access frequently
+
 return {
   'cbochs/grapple.nvim',
   dependencies = {

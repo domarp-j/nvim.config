@@ -1,3 +1,5 @@
+-- A neat color scheme
+
 return {
   'rebelot/kanagawa.nvim',
   priority = 1000,

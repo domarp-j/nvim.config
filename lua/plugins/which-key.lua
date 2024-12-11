@@ -1,5 +1,5 @@
--- which-key.nvim
--- Helps you remember Neovim keymaps
+-- Helps you remember and manage Neovim keymaps
+
 return {
   'folke/which-key.nvim',
   event = 'VimEnter',
