@@ -40,7 +40,7 @@ return {
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ocument' },
-      { '<leader>g', group = '[G]rapple' },
+      { '<leader>g', group = '[G]rapple' }, -- grapple.nvim
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },
