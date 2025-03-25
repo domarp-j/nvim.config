@@ -8,7 +8,7 @@ Forked from: https://github.com/nvim-lua/kickstart.nvim
 
 ### Install Neovim
 
-Kickstart.nvim targets *only* the latest
+This config targets *only* the latest
 ['stable'](https://github.com/neovim/neovim/releases/tag/stable) and latest
 ['nightly'](https://github.com/neovim/neovim/releases/tag/nightly) of Neovim.
 If you are experiencing issues, please make sure you have the latest versions.
@@ -47,7 +47,7 @@ Neovim's configurations are located under the following paths, depending on your
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone git@github.com:domarp-j/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone git@github.com:domarp-j/nvim.config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
@@ -57,13 +57,13 @@ git clone git@github.com:domarp-j/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.
 If you're using `cmd.exe`:
 
 ```
-git clone git@github.com:domarp-j/kickstart.nvim.git "%localappdata%\nvim"
+git clone git@github.com:domarp-j/knvim.config.git "%localappdata%\nvim"
 ```
 
 If you're using `powershell.exe`
 
 ```
-git clone git@github.com:domarp-j/kickstart.nvim.git "${env:LOCALAPPDATA}\nvim"
+git clone git@github.com:domarp-j/nvim.config.git "${env:LOCALAPPDATA}\nvim"
 ```
 
 </details>
