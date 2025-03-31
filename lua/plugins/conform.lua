@@ -1,5 +1,4 @@
--- Autocompletion
-
+-- Autoformat
 -- NOTE: This plugin requires installation of any desired formatters,
 -- such as eslint_d or prettierd. Update `ensure_installed` in
 -- nvim-lspconfig.lua so that Mason installs them automatically.
