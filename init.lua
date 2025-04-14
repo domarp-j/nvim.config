@@ -156,6 +156,7 @@ vim.keymap.set('n', '[e', function()
   vim.diagnostic.goto_prev { severity = vim.diagnostic.severity.ERROR }
 end)
 
+-- Toggle Neotree.
 vim.keymap.set('n', '<C-\\>', '<cmd>Neotree position=current toggle<CR>', { desc = 'Open Neotree' })
 
 --------------------------------------------------------------------------------
