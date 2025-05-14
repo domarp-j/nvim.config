@@ -46,6 +46,7 @@ return {
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>w', group = '[W]orkspace' },
+      { '<leader>p', group = 'S[P]ectre' }, -- nvim-spectre
     },
   },
 }
