@@ -205,6 +205,14 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end,
 })
 
+-- Remove trailing whitespace on save.
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = '*',
+  callback = function()
+    vim.cmd [[%s/\s\+$//e]]
+  end,
+})
+
 --------------------------------------------------------------------------------
 -- [[ PLUGINS ]] config-plugins
 -- This config uses lazy.nvim to manage plugins.
