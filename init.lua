@@ -164,7 +164,14 @@ vim.keymap.set('n', '<C-\\>', '<cmd>Neotree position=current toggle<CR>', { desc
 -- :help lua-guide-commands
 --------------------------------------------------------------------------------
 
--- ...none yet...
+-- Copy current file path with line number to clipboard
+vim.keymap.set('n', '<leader>cf', function()
+  local filepath = vim.fn.expand('%:p')
+  local line = vim.fn.line('.')
+  local result = filepath .. ':' .. line
+  vim.fn.setreg('+', result)
+  print('Copied: ' .. result)
+end, { desc = '[C]opy [F]ile path with line number' })
 
 --------------------------------------------------------------------------------
 -- [[ AUTOCOMMANDS ]] config-autocommands
