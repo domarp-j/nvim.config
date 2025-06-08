@@ -166,8 +166,8 @@ vim.keymap.set('n', '<C-\\>', '<cmd>Neotree position=current toggle<CR>', { desc
 
 -- Copy current file path with line number to clipboard
 vim.keymap.set('n', '<leader>cf', function()
-  local filepath = vim.fn.expand('%:p')
-  local line = vim.fn.line('.')
+  local filepath = vim.fn.expand '%:p'
+  local line = vim.fn.line '.'
   local result = filepath .. ':' .. line
   vim.fn.setreg('+', result)
   print('Copied: ' .. result)
@@ -216,7 +216,9 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
 vim.api.nvim_create_autocmd('BufWritePre', {
   pattern = '*',
   callback = function()
-    vim.cmd [[%s/\s\+$//e]]
+    local curpos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd [[silent! %s/\s\+$//e]]
+    vim.api.nvim_win_set_cursor(0, curpos)
   end,
 })
 
