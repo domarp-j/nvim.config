@@ -15,10 +15,12 @@ return {
         position = 'current',
       },
       filesystem = {
+        follow_current_file = {
+          enabled = true,
+        },
         filtered_items = {
           visible = true, -- 👈 show hidden files by default
           hide_dotfiles = false,
-          hide_gitignored = false,
         },
       },
     }
