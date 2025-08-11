@@ -6,9 +6,13 @@ return {
   opts = {},
   config = function()
     local lspconfig = require 'lspconfig'
+
     require('typescript-tools').setup {
       single_file_support = false,
       root_dir = lspconfig.util.root_pattern 'package.json',
+      settings = {
+        tsserver_max_memory = 16384000,
+      },
     }
   end,
 }
