@@ -52,7 +52,21 @@ return {
       --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
       --   },
       -- },
-      -- pickers = {}
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        live_grep = {
+          additional_args = function(_)
+            return { '--hidden' }
+          end,
+        },
+        grep_string = {
+          additional_args = function(_)
+            return { '--hidden' }
+          end,
+        },
+      },
       extensions = {
         ['ui-select'] = {
           require('telescope.themes').get_dropdown(),
