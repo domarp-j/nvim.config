@@ -14,10 +14,12 @@ return {
             '--line-number',
             '--column',
             '--hidden', -- include hidden files
+            -- skip .git
             '--glob',
-            '!.git/*', -- skip .git
+            '!.git/*',
+            -- skip node_modules
             '--glob',
-            '!node_modules/*', -- skip node_modules
+            '!node_modules/*',
           },
           options = {
             ['ignore-case'] = {
