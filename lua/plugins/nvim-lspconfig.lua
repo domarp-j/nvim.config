@@ -115,6 +115,15 @@ return {
           },
         },
       },
+      ruff = {
+        init_options = {
+          settings = {
+            -- Ruff language server settings
+            -- Enable all ruff capabilities
+            logLevel = 'info',
+          },
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed.
@@ -131,6 +140,7 @@ return {
       'stylua',
       'eslint_d',
       'prettierd',
+      'ruff',
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

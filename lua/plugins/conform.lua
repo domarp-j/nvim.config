@@ -37,6 +37,7 @@ return {
         javascript = { 'eslint_d', 'prettierd' },
         javascriptreact = { 'eslint_d', 'prettierd' },
         lua = { 'stylua' },
+        python = { 'ruff_format', 'ruff_organize_imports' },
         typescript = { 'eslint_d', 'prettierd' },
         typescriptreact = { 'eslint_d', 'prettierd' },
       },
