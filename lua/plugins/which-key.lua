@@ -40,13 +40,14 @@ return {
     spec = {
       { '<leader>c', group = '[C]ode', mode = { 'n', 'x' } },
       { '<leader>d', group = '[D]ocument' },
-      { '<leader>g', group = '[G]rapple' }, -- grapple.nvim
+      { '<leader>g', group = '[G]rapple (File Navigation)' }, -- grapple.nvim
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       { '<leader>r', group = '[R]ename' },
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>w', group = '[W]orkspace' },
-      { '<leader>p', group = 'S[P]ectre' }, -- nvim-spectre
+      { '<leader>p', group = 'S[P]ectre (Find & Replace)' }, -- nvim-spectre
+      { '<leader>k', group = '[K]ulala (REST)' }, -- kulala.nvim
     },
   },
 }
