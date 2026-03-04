@@ -135,7 +135,15 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        -- ts_ls = {},
+        vtsls = {
+          settings = {
+            typescript = {
+              tsserver = {
+                maxTsServerMemory = 16384,
+              },
+            },
+          },
+        },
 
         stylua = {}, -- Used to format Lua code
 
@@ -179,6 +187,8 @@ return {
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         -- You can add other tools here that you want Mason to install
+        'prettierd',
+        'eslint_d',
       })
 
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
