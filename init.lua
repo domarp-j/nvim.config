@@ -220,3 +220,7 @@ require('lazy').setup({
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+-- Set the color scheme
+-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
+vim.cmd.colorscheme 'kanagawa-dragon'
