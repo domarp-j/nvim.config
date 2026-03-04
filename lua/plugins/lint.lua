@@ -1,3 +1,6 @@
+-- nvim-lint
+-- Asynchronous linter that runs on BufEnter, BufWritePost, and InsertLeave. Configured for Markdown with markdownlint.
+
 -- Optional: uncomment to enable
 -- return {
 --   { -- Linting

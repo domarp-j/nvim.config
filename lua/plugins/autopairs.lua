@@ -1,5 +1,5 @@
--- autopairs
--- https://github.com/windwp/nvim-autopairs
+-- nvim-autopairs
+-- Automatically inserts matching closing brackets, quotes, and other delimiter pairs when typing the opening character in insert mode.
 
 -- Optional: uncomment to enable
 -- return {

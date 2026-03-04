@@ -1,3 +1,6 @@
+-- mini.nvim
+-- Three modules: mini.ai (extended text objects: va), yinq, ci'), mini.surround (add/delete/replace pairs: saiw), sd', sr)'), mini.statusline (minimal status bar showing LINE:COL).
+
 return {
   { -- Collection of various small independent plugins/modules
     'nvim-mini/mini.nvim',

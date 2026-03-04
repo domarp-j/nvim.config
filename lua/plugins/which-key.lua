@@ -1,3 +1,6 @@
+-- which-key.nvim
+-- Shows a popup of available keybindings when you pause mid-chord. Configured with labeled groups: <leader>s Search, <leader>t Toggle, <leader>h Git Hunk, gr LSP Actions.
+
 return {
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
   --

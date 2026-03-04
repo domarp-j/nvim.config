@@ -1,3 +1,6 @@
+-- gitsigns.nvim
+-- Displays git change markers (+/~/\_/‾) in the sign column next to added, changed, and deleted lines.
+
 return {
   -- Alternatively, use `config = function() ... end` for full control over the configuration.
   -- If you prefer to call `setup` explicitly, use:

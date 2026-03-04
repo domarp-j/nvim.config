@@ -1,3 +1,6 @@
+-- telescope.nvim
+-- Fuzzy finder for files, buffers, live grep, LSP symbols, help tags, keymaps, and more. Keybindings under <leader>s. Also wires up LSP navigation (grr, gri, grd, gO, gW, grt).
+
 return {
   -- NOTE: Plugins can specify dependencies.
   --

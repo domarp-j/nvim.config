@@ -1,6 +1,5 @@
--- Adds git related signs to the gutter, as well as utilities for managing changes
--- NOTE: gitsigns is already included in gitsigns.lua but contains only the base
--- config. This will add also the recommended keymaps.
+-- gitsigns.nvim (extended)
+-- Replaces gitsigns.lua with added keybindings: ]c/[c hunk navigation, <leader>hs/hr stage/reset hunk, <leader>hb blame, <leader>hd diff, <leader>tb/tD toggles. Disable gitsigns.lua if enabling this.
 
 -- Optional: uncomment to enable (and disable gitsigns.lua to avoid duplicate setup)
 -- return {

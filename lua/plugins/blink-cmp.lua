@@ -1,3 +1,6 @@
+-- blink.cmp
+-- Autocompletion engine sourcing from LSP, filesystem paths, and LuaSnip snippets. Shows signature help while typing function arguments.
+
 return {
   { -- Autocompletion
     'saghen/blink.cmp',

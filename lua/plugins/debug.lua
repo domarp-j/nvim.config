@@ -1,10 +1,5 @@
--- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
+-- nvim-dap
+-- Full Debug Adapter Protocol setup with a UI (nvim-dap-ui). Configured for Go (delve). Keys: <F5> continue, <F1-3> step in/over/out, <leader>b breakpoint, <F7> toggle UI.
 
 -- Optional: uncomment to enable
 -- return {

@@ -1,5 +1,5 @@
--- Neo-tree is a Neovim plugin to browse the file system
--- https://github.com/nvim-neo-tree/neo-tree.nvim
+-- neo-tree.nvim
+-- File system browser sidebar. Press \ to reveal the current file in the tree; press \ again inside the tree to close it.
 
 -- Optional: uncomment to enable
 -- return {

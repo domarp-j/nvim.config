@@ -1,3 +1,6 @@
+-- conform.nvim
+-- Code formatter. Runs stylua on Lua files. Formats on save (except C/C++) and on demand via <leader>f.
+
 return {
   { -- Autoformat
     'stevearc/conform.nvim',

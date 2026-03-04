@@ -1,3 +1,6 @@
+-- nvim-treesitter
+-- Syntax highlighting and smart indentation via Tree-sitter parsers. Installs parsers for bash, c, diff, html, lua, markdown, vim, vimdoc, and more. Activates per-filetype on FileType event.
+
 return {
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',

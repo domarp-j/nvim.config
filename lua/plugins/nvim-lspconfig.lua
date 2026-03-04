@@ -1,3 +1,6 @@
+-- nvim-lspconfig
+-- Language Server Protocol client. Installs LSPs via Mason (lua_ls, stylua). On attach: grn rename, gra code action, grD declaration, <leader>th toggle inlay hints. Highlights word references under cursor.
+
 return {
   -- LSP Plugins
   {

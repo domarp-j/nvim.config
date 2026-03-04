@@ -1,3 +1,6 @@
+-- tokyonight.nvim
+-- Tokyo Night colorscheme (night variant). Loaded at highest priority so other plugins inherit correct highlight groups. Comment italics disabled.
+
 return {
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
