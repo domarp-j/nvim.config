@@ -161,11 +161,6 @@ end
 local rtp = vim.opt.rtp
 rtp:prepend(lazypath)
 
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
--- NOTE: CUSTOM-START
-
 -- Disable netrw on load so we can use Neotree instead.
 -- We're essentially tricking Vim into thinking netrw is already loaded.
 vim.g.loaded_netrw = 1
@@ -187,11 +182,6 @@ if in_wsl then
     cache_enabled = 0,
   }
 end
-
--- NOTE: CUSTOM-END
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
---------------------------------------------------------------------------------
 
 -- NOTE: Plugins are defined in lua/plugins/ (one file per plugin).
 require('lazy').setup({
@@ -224,3 +214,12 @@ require('lazy').setup({
 -- Set the color scheme
 -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
 vim.cmd.colorscheme 'kanagawa-dragon'
+
+-- Copy current file path and line number to clipboard
+vim.keymap.set('n', '<leader>cf', function()
+  local filepath = vim.fn.expand '%:p'
+  local line = vim.fn.line '.'
+  local result = filepath .. ':' .. line
+  vim.fn.setreg('+', result)
+  print('Copied: ' .. result)
+end, { desc = '[C]opy [F]ile path with line number' })
