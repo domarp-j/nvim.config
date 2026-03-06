@@ -216,10 +216,21 @@ require('lazy').setup({
 vim.cmd.colorscheme 'kanagawa-dragon'
 
 -- Copy current file path and line number to clipboard
-vim.keymap.set('n', '<leader>cf', function()
+vim.keymap.set('n', '<leader>ca', function()
   local filepath = vim.fn.expand '%:p'
   local line = vim.fn.line '.'
   local result = filepath .. ':' .. line
   vim.fn.setreg('+', result)
   print('Copied: ' .. result)
-end, { desc = '[C]opy [F]ile path with line number' })
+end, { desc = '[C]opy [A]bsolute path with line number' })
+
+local copy_relative_path = function()
+  local dirname = vim.fn.fnamemodify(vim.fn.getcwd(), ':t')
+  local filepath = vim.fn.expand '%:.'
+  local line = vim.fn.line '.'
+  local result = dirname .. '/' .. filepath .. ':' .. line
+  vim.fn.setreg('+', result)
+  print('Copied: ' .. result)
+end
+vim.keymap.set('n', '<leader>cr', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
+vim.keymap.set('n', '<leader>cf', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
