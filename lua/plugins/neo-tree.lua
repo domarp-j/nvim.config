@@ -12,6 +12,10 @@ return {
   lazy = false,
   keys = {
     { '\\', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '|', ':Neotree reveal<CR>', desc = 'NeoTree reveal', silent = true },
+    { '<leader>nf', ':Neotree float reveal_file=<cfile> reveal_force_cwd<CR>', desc = 'NeoTree float reveal file', silent = true },
+    { '<leader>nb', ':Neotree toggle show buffers right<CR>', desc = 'NeoTree toggle buffers', silent = true },
+    { '<leader>ng', ':Neotree float git_status<CR>', desc = 'NeoTree git status', silent = true },
   },
   ---@module 'neo-tree'
   ---@type neotree.Config
