@@ -1,4 +1,8 @@
-# kickstart.nvim
+# nvim.config
+
+A clone of kickstart.nvim.
+
+---
 
 ## Introduction
 
