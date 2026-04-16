@@ -234,3 +234,29 @@ local copy_relative_path = function()
 end
 vim.keymap.set('n', '<leader>cr', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
 vim.keymap.set('n', '<leader>cf', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
+
+local clean_group = vim.api.nvim_create_augroup('CleanOnSave', { clear = true })
+vim.api.nvim_create_autocmd('BufWritePre', {
+  group = clean_group,
+  pattern = '*',
+  callback = function()
+    if vim.bo.buftype ~= '' then return end
+    local view = vim.fn.winsaveview()
+
+    vim.cmd [[%s/\s\+$//e]]
+
+    local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
+    local n = #lines
+
+    while n > 0 and lines[n] == '' do
+      table.remove(lines, n)
+      n = n - 1
+    end
+
+    table.insert(lines, '')
+
+    vim.api.nvim_buf_set_lines(0, 0, -1, false, lines)
+    vim.fn.winrestview(view)
+  end,
+})
+
