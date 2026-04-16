@@ -235,6 +235,7 @@ end
 vim.keymap.set('n', '<leader>cr', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
 vim.keymap.set('n', '<leader>cf', copy_relative_path, { desc = '[C]opy [R]elative path with line number' })
 
+-- Remove trailing whitespace on save
 local clean_group = vim.api.nvim_create_augroup('CleanOnSave', { clear = true })
 vim.api.nvim_create_autocmd('BufWritePre', {
   group = clean_group,
