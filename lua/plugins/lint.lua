@@ -1,5 +1,5 @@
 -- nvim-lint
--- Asynchronous linter that runs on BufEnter, BufWritePost, and InsertLeave. Configured for Markdown with markdownlint, and TypeScript/JavaScript with eslint_d.
+-- Asynchronous linter that runs on BufEnter, BufWritePost, and InsertLeave. Configured for TypeScript/JavaScript with biome.
 
 return {
   {
@@ -8,11 +8,11 @@ return {
     config = function()
       local lint = require 'lint'
       lint.linters_by_ft = {
-        markdown = { 'markdownlint' },
-        typescript = { 'eslint_d' },
-        typescriptreact = { 'eslint_d' },
-        javascript = { 'eslint_d' },
-        javascriptreact = { 'eslint_d' },
+        -- markdown = { 'markdownlint' },
+        typescript = { 'biomejs' },
+        typescriptreact = { 'biomejs' },
+        javascript = { 'biomejs' },
+        javascriptreact = { 'biomejs' },
       }
 
       -- To allow other plugins to add linters to require('lint').linters_by_ft,
@@ -62,3 +62,4 @@ return {
     end,
   },
 }
+
