@@ -148,6 +148,36 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function() vim.hl.on_yank() end,
 })
 
+vim.api.nvim_create_autocmd('VimEnter', {
+  desc = 'Open README.md on empty or directory startup',
+  group = vim.api.nvim_create_augroup('kickstart-open-readme', { clear = true }),
+  callback = function()
+    vim.schedule(function()
+      local argc = vim.fn.argc()
+      local target_dir
+
+      if argc == 0 then
+        target_dir = vim.fn.getcwd()
+      elseif argc == 1 then
+        local arg_path = vim.fn.fnamemodify(vim.fn.argv(0), ':p')
+        local stat = (vim.uv or vim.loop).fs_stat(arg_path)
+        if not stat or stat.type ~= 'directory' then return end
+
+        target_dir = arg_path
+      else
+        return
+      end
+
+      local readme = vim.fs.joinpath(target_dir, 'README.md')
+      if (vim.uv or vim.loop).fs_stat(readme) then
+        vim.cmd.edit(vim.fn.fnameescape(readme))
+      elseif argc == 1 then
+        vim.cmd.enew()
+      end
+    end)
+  end,
+})
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
