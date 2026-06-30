@@ -1,5 +1,5 @@
 -- which-key.nvim
--- Shows a popup of available keybindings when you pause mid-chord. Configured with labeled groups: <leader>s Search, <leader>t Toggle, <leader>h Git Hunk, gr LSP Actions.
+-- Shows a popup of available keybindings when you pause mid-chord. Configured with labeled mappings/groups: <leader>a Aerial, <leader>s Search, <leader>t Toggle, <leader>h Git Hunk, gr LSP Actions.
 
 return {
   -- NOTE: Plugins can also be configured to run Lua code when they are loaded.
@@ -29,12 +29,16 @@ return {
 
       -- Document existing key chains
       spec = {
-        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
-        { '<leader>d', group = '[D]iffview' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+        { '<leader>a', group = '[A]erial' },
+        { '<leader>ao', '<cmd>AerialOpen<cr>', desc = '[A]erial [O]pen' },
+        { '<leader>ac', '<cmd>AerialClose<cr>', desc = '[A]erial [C]lose' },
+        { '<leader>at', '<cmd>AerialToggle<cr>', desc = '[A]erial [T]oggle' },
         { '<leader>c', group = '[C]opy' },
+        { '<leader>d', group = '[D]iffview' },
+        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
         { '<leader>n', group = '[N]eoTree' },
+        { '<leader>s', group = '[S]earch', mode = { 'n', 'v' } },
+        { '<leader>t', group = '[T]oggle' },
         { 'gr', group = 'LSP Actions', mode = { 'n' } },
       },
     },
